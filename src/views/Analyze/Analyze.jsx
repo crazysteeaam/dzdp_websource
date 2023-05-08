@@ -15,6 +15,7 @@ import {
     YAxis,
     Tooltip, PieChart, Pie, Sector, Cell
 } from "recharts";
+import {useMatch} from "react-router-dom";
 
 
 const TopAreaBox = (item) => {
@@ -89,6 +90,14 @@ const renderActiveShape = (props) => {
 };
 
 export const Analyze = () => {
+
+    const match = useMatch('/analyze');
+
+    useEffect(() => {
+        if (match) {
+            document.title = '大众点评数据分析平台 - 市场分析'
+        }
+    }, [match]);
 
     const [TopArea, setTopArea] = useState([])
     const [State, setState] = useState({activeIndex: 0})
