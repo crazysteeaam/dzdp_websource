@@ -1,27 +1,28 @@
 import './LeftBar.scss'
 import {useEffect, useState} from "react";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 const LeftBarbox = (item) => {
 
-    const navigate = useNavigate();
-
-      function handleClick() {
-        navigate(item.item.gotopage);
-      }
+    console.log(item)
 
     return (
         <>
-            <div className="barbox" onClick={handleClick}>
+            <div className="barbox">
                 <div className="barleft">
                     <div className="barbox-icon">
-                        <img src={item.item.bariconaddress} alt=""/>
+                        <img src={item.item.item.bariconaddress} alt=""/>
                     </div>
-                    <div className="barbox-title">{item.item.bartitle}</div>
+                    <div
+                        className="barbox-title"
+                        style={{
+                            color: item.item.item.index === item.item.selectedindex ? "#548ce0" : "#000000"
+                        }}
+                    >{item.item.item.bartitle}</div>
                 </div>
                 {
-                    item.item.gotoicon &&
+                    item.item.item.gotoicon &&
                     <img className="barbox-righttri" src="/src/static/righttri.png" alt=""/>
                 }
             </div>
@@ -31,12 +32,21 @@ const LeftBarbox = (item) => {
 
 export const LeftBar = () => {
 
+    const navigate = useNavigate();
+
     const [BarList, setBarList] = useState([]);
+    const [Selectedindex, setSelectedIndex] = useState(0);
+
+    let handleClick = function (item) {
+        console.log(item)
+        navigate(item.gotopage);
+        setSelectedIndex(item.index);
+    }
 
     useEffect(() => {
         setBarList([
             {
-                index: 0,
+                index: -1,
                 bariconaddress: "/src/static/home.png",
                 bartitle: "工作台",
                 gotoicon: false,
@@ -79,15 +89,26 @@ export const LeftBar = () => {
         ])
     }, [])
 
-    const BarListView = () => {
+    const BarListView = (selectedindex) => {
         return BarList.map((item, index) => {
-            return <LeftBarbox key={index} item={item}/>
+            console.log(selectedindex.selectedindex)
+            return (
+                <div onClick={() => handleClick(item)}>
+                    <LeftBarbox
+                        key={index}
+                        item={{"item":item,
+                            "selectedindex":selectedindex.selectedindex
+                    }}
+                    />
+                </div>
+            )
+
         })
     }
 
     return (
         <>
-            <BarListView/>
+            <BarListView selectedindex={Selectedindex}/>
         </>
     )
 }
