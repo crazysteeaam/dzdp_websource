@@ -5,8 +5,6 @@ import {useNavigate} from 'react-router-dom';
 
 const LeftBarbox = (item) => {
 
-    console.log(item)
-
     return (
         <>
             <div className="barbox">
@@ -96,9 +94,10 @@ export const LeftBar = () => {
                 <div onClick={() => handleClick(item)}>
                     <LeftBarbox
                         key={index}
-                        item={{"item":item,
-                            "selectedindex":selectedindex.selectedindex
-                    }}
+                        item={{
+                            "item": item,
+                            "selectedindex": selectedindex.selectedindex
+                        }}
                     />
                 </div>
             )

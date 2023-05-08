@@ -7,7 +7,7 @@ export const TopBar = () => {
             <div className="topbar">
                 <div className="leftarea">
                     <div className="logo">
-                        <img src="/vite.svg" alt="logo" />
+                        <img src="/vite.svg" alt="logo"/>
                     </div>
                     <div className="title">大众点评数据分析系统</div>
                 </div>

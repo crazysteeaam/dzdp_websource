@@ -1,6 +1,7 @@
 import './UserBook.scss'
 import {useMatch} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {Space, Spin} from "antd";
 
 export const UserBook = () => {
 
@@ -12,7 +13,23 @@ export const UserBook = () => {
         }
     }, [match]);
 
+    const [Loading, setLoading] = useState(false)
+
     return (
-        <>用户画像界面</>
+        <>
+            {
+                Loading &&
+                <div className="spin">
+                    <Space direction="vertical" style={{ width: '100%' }}>
+                        <Spin tip="Loading" size="large">
+                           <div className="content" />
+                        </Spin>
+                    </Space>
+                </div>
+            }
+            <div className="userbook">
+                用户画像界面
+            </div>
+        </>
     )
 }

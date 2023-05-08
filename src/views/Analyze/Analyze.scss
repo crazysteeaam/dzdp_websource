@@ -1,26 +1,26 @@
-.spin{
+.spin {
   position: fixed;
-  width:90%;
+  width: 90%;
   margin: 0 auto;
-  height:100%;
-  background-color: rgba(255,255,255,0.5);
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   z-index: 999;
   backdrop-filter: blur(3px);
 }
 
-.analyze{
-  height:100%;
-  width:100%;
+.analyze {
+  height: 100%;
+  width: 100%;
   background-color: #f4f5fb;
-  padding-top:17px;
+  padding-top: 17px;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
 
-  .toparea{
-    width:85%;
+  .toparea {
+    width: 85%;
     height: 102.47px;
     margin: 0 auto;
     background-color: white;
@@ -29,26 +29,28 @@
     justify-content: space-between;
     box-sizing: border-box;
 
-    .topareabox{
-      width:25%;
-      height:50%;
+    .topareabox {
+      width: 25%;
+      height: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      .leftarea{
-        width:30%;
-        height:100%;
+      .leftarea {
+        width: 30%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left:5%;
-        img{
+        margin-left: 5%;
+
+        img {
           width: 40px;
           height: 40px;
         }
       }
-      .rightarea{
+
+      .rightarea {
         width: 65%;
         height: 100%;
         display: flex;
@@ -56,17 +58,17 @@
         align-items: flex-start;
         justify-content: center;
 
-        .title{
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.36px;
-            line-height: 16.46px;
-            color: rgba(79, 84, 112, 1);
-            text-align: left;
+        .title {
+          font-size: 12px;
+          font-weight: 400;
+          letter-spacing: 0.36px;
+          line-height: 16.46px;
+          color: rgba(79, 84, 112, 1);
+          text-align: left;
         }
 
-        .value{
-          margin-top:3px;
+        .value {
+          margin-top: 3px;
           font-size: 20px;
           font-weight: 500;
           letter-spacing: 0.6px;
@@ -76,35 +78,34 @@
       }
 
 
-
     }
   }
 
-  .middlearea{
+  .middlearea {
     height: 317.33px;
-    width:98%;
+    width: 98%;
     margin: 0 auto;
-    margin-top:17px;
+    margin-top: 17px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .middleareabox{
-      width:48%;
-      height:100%;
+    .middleareabox {
+      width: 48%;
+      height: 100%;
       background-color: white;
       margin-left: 2%;
 
-      .middleareaboxtop{
-        height:30px;
-        width:95%;
+      .middleareaboxtop {
+        height: 30px;
+        width: 95%;
         margin: 0 auto;
-        margin-top:10px;
+        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .title{
+        .title {
           font-size: 14px;
           font-weight: 400;
           letter-spacing: 0px;
@@ -113,7 +114,7 @@
           text-align: left;
         }
 
-        .more{
+        .more {
           font-size: 12px;
           font-weight: 400;
           letter-spacing: 1px;
@@ -122,39 +123,43 @@
           cursor: pointer;
         }
       }
-      .middleareaboxbottom{
-        height:calc(100% - 30px);
-        width:95%;
+
+      .middleareaboxbottom {
+        height: calc(100% - 30px);
+        width: 95%;
         margin: 0 auto;
-        padding-top:20px;
+        padding-top: 20px;
         padding-bottom: 10px;
         box-sizing: border-box;
       }
     }
   }
-  .anabottomarea{
+
+  .anabottomarea {
     height: calc(100% - 466.8px);
-    width:95%;
+    width: 95%;
     margin: 0 auto;
-    margin-top:17px;
+    margin-top: 17px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden ;
-    .bottomareabox{
+    overflow: hidden;
+
+    .bottomareabox {
       width: 31%;
-      height:100%;
+      height: 100%;
       background-color: white;
-      .middleareaboxtop{
-        height:30px;
-        width:95%;
+
+      .middleareaboxtop {
+        height: 30px;
+        width: 95%;
         margin: 0 auto;
-        margin-top:10px;
+        margin-top: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .title{
+        .title {
           font-size: 14px;
           font-weight: 400;
           letter-spacing: 0px;
@@ -163,7 +168,7 @@
           text-align: left;
         }
 
-        .more{
+        .more {
           font-size: 12px;
           font-weight: 400;
           letter-spacing: 1px;
@@ -172,22 +177,25 @@
           cursor: pointer;
         }
       }
-      .middleareaboxbottom{
-        height:calc(100% - 30px);
-        width:95%;
+
+      .middleareaboxbottom {
+        height: calc(100% - 30px);
+        width: 95%;
         margin: 0 auto;
-        padding-top:20px;
+        padding-top: 20px;
         padding-bottom: 10px;
         box-sizing: border-box;
         overflow: visible;
-        .container{
+
+        .container {
           overflow: visible;
         }
       }
     }
-    img{
+
+    img {
       width: 31%;
-      height:100%;
+      height: 100%;
       object-fit: contain;
     }
   }
