@@ -18,6 +18,7 @@
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom:10px;
 
   .toparea {
     width: 85%;
@@ -136,7 +137,7 @@
   }
 
   .anabottomarea {
-    height: calc(100% - 466.8px);
+    height: 290px;
     width: 95%;
     margin: 0 auto;
     margin-top: 17px;
