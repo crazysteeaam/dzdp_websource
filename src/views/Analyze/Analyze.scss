@@ -31,7 +31,7 @@
     box-sizing: border-box;
 
     .topareabox {
-      width: 25%;
+      width: 24%;
       height: 50%;
       display: flex;
       align-items: center;
@@ -96,7 +96,16 @@
       height: 100%;
       background-color: white;
       margin-left: 2%;
-
+      .spin2 {
+          width: 100%;
+          margin: 0 auto;
+          height: 100%;
+          background-color: rgba(255, 255, 255, 0.5);
+          display: flex;
+          align-items: center;
+          z-index: 999;
+          backdrop-filter: blur(3px);
+        }
       .middleareaboxtop {
         height: 30px;
         width: 95%;
@@ -129,7 +138,7 @@
         height: calc(100% - 30px);
         width: 95%;
         margin: 0 auto;
-        padding-top: 20px;
+        padding-top: 10px;
         padding-bottom: 10px;
         box-sizing: border-box;
       }

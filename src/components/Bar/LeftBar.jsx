@@ -21,7 +21,7 @@ const LeftBarbox = (item) => {
                 </div>
                 {
                     item.item.item.gotoicon &&
-                    <img className="barbox-righttri" src="/src/static/righttri.png" alt=""/>
+                    <img className="barbox-righttri" src="/static/righttri.png" alt=""/>
                 }
             </div>
         </>
@@ -45,42 +45,42 @@ export const LeftBar = () => {
         setBarList([
             {
                 index: -1,
-                bariconaddress: "/src/static/home.png",
+                bariconaddress: "/static/home.png",
                 bartitle: "工作台",
                 gotoicon: false,
-                gotopage: ""
+                gotopage: "/index"
             },
             {
                 index: 0,
-                bariconaddress: "/src/static/analyze.png",
+                bariconaddress: "/static/analyze.png",
                 bartitle: "市场分析",
                 gotoicon: true,
                 gotopage: "/analyze"
             },
             {
                 index: 1,
-                bariconaddress: "/src/static/user.png",
+                bariconaddress: "/static/user.png",
                 bartitle: "用户画像",
                 gotoicon: true,
                 gotopage: "/userbook"
             },
             {
                 index: 2,
-                bariconaddress: "/src/static/marketing.png",
+                bariconaddress: "/static/marketing.png",
                 bartitle: "精准营销",
                 gotoicon: true,
                 gotopage: "/marketing"
             },
             {
                 index: 3,
-                bariconaddress: "/src/static/compare.png",
+                bariconaddress: "/static/compare.png",
                 bartitle: "竞争对比",
                 gotoicon: true,
                 gotopage: "/compare"
             },
             {
                 index: 4,
-                bariconaddress: "/src/static/setting.png",
+                bariconaddress: "/static/setting.png",
                 bartitle: "设置",
                 gotoicon: true
             }

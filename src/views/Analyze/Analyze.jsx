@@ -1,6 +1,6 @@
 import './Analyze.scss'
 import {useEffect, useState} from "react";
-import {Select,Alert, Space, Spin} from 'antd';
+import {Select, Alert, Space, Spin} from 'antd';
 import {analyzeApi} from "../../api";
 import {
     Area,
@@ -49,15 +49,15 @@ const renderActiveShape = (props) => {
 
     return (
         <g>
-            <text x={cx} y={cy-15} dy={8} fontSize={20} fontWeight={500} textAnchor="middle" fill="black">
+            <text x={cx} y={cy - 15} dy={8} fontSize={20} fontWeight={500} textAnchor="middle" fill="black">
                 {/*{payload.name}*/}
                 206
             </text>
-            <text x={cx} y={cy+3} dy={8} fontSize={12} textAnchor="middle" fill="black">
+            <text x={cx} y={cy + 3} dy={8} fontSize={12} textAnchor="middle" fill="black">
                 {/*{payload.name}*/}
                 餐厅
             </text>
-            <text x={cx} y={cy+20} dy={8} fontSize={12} textAnchor="middle" fill="black">
+            <text x={cx} y={cy + 20} dy={8} fontSize={12} textAnchor="middle" fill="black">
                 {/*{payload.name}*/}
                 总数
             </text>
@@ -81,7 +81,8 @@ const renderActiveShape = (props) => {
             />
             <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none"/>
             <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none"/>
-            <text x={ex + (cos >= 0 ? 1 : -1) * 10} y={ey} textAnchor={textAnchor} fontSize={12} fill="#333">{`数量 ${value}`}</text>
+            <text x={ex + (cos >= 0 ? 1 : -1) * 10} y={ey} textAnchor={textAnchor} fontSize={12}
+                  fill="#333">{`数量 ${value}`}</text>
             <text x={ex + (cos >= 0 ? 1 : -1) * 10} y={ey} dy={18} textAnchor={textAnchor} fontSize={12} fill="#999">
                 {`(Rate ${(percent * 100).toFixed(1)}%)`}
             </text>
@@ -105,40 +106,44 @@ export const Analyze = () => {
     const [Merchantlist, setMerchantlist] = useState([])
     const [Data1, setData1] = useState([])
     const [Loading, setLoading] = useState(true)
+    const [Loading2, setLoading2] = useState(false)
 
     useEffect(() => {
         analyzeApi.getstartdata().then(res => {
             setDatalist(res.message);
             setTopArea([
-            {
-                index: 0,
-                icon: '/src/static/ana-topbox/1.jpg',
-                title: '入驻餐厅总数',
-                value: res.message.total_num
-            },
-            {
-                index: 1,
-                icon: '/src/static/ana-topbox/2.jpg',
-                title: '总评论数',
-                value: res.message.total_comment
-            },
-            {
-                index: 2,
-                icon: '/src/static/ana-topbox/3.jpg',
-                title: 'VIP客户占比',
-                value: res.message.vip_rate + '%'
-            },
-            {
-                index: 3,
-                icon: '/src/static/ana-topbox/4.jpg',
-                title: '市场平均得分',
-                value: res.message.mean_rating + '/5'
-            }
-        ])
+                {
+                    index: 0,
+                    icon: '/static/ana-topbox/1.jpg',
+                    title: '入驻餐厅总数',
+                    value: res.message.total_num
+                },
+                {
+                    index: 1,
+                    icon: '/static/ana-topbox/2.jpg',
+                    title: '总评论数',
+                    value: res.message.total_comment
+                },
+                {
+                    index: 2,
+                    icon: '/static/ana-topbox/3.jpg',
+                    title: 'VIP客户占比',
+                    value: res.message.vip_rate + '%'
+                },
+                {
+                    index: 3,
+                    icon: '/static/ana-topbox/4.jpg',
+                    title: '市场平均得分',
+                    value: res.message.mean_rating + '/5'
+                }
+            ])
             setMerchantlist(res.message.merchants)
             setData1(res.message.data1)
             setLoading(false)
         })
+            .catch((err) => {
+                console.log(err)
+            })
     }, [])
 
     const onPieEnter = (_, index) => {
@@ -158,9 +163,14 @@ export const Analyze = () => {
 
     const onChange = (value) => {
         console.log(`selected ${value}`);
+        setLoading2(true);
         analyzeApi.getdata1(value).then(res => {
-            setData1(res.message.data1)
-        }
+                setData1(res.message.data1)
+                setLoading2(false)
+            }
+        ).catch((err) => {
+                console.log(err)
+            }
         )
     };
 
@@ -176,7 +186,7 @@ export const Analyze = () => {
 
     const data4 = Datalist.data4
 
-    const COLORS = ['rgba(112, 138, 255, 1)', 'rgba(66, 164, 245, 1)', 'rgba(157, 115, 255, 1)', 'rgba(247, 193, 45, 1)','rgba(255, 153, 43, 1)','rgba(160, 165, 198, 1)','rgba(247, 101, 96, 1)'];
+    const COLORS = ['rgba(112, 138, 255, 1)', 'rgba(66, 164, 245, 1)', 'rgba(157, 115, 255, 1)', 'rgba(247, 193, 45, 1)', 'rgba(255, 153, 43, 1)', 'rgba(160, 165, 198, 1)', 'rgba(247, 101, 96, 1)'];
 
 
     return (
@@ -184,9 +194,9 @@ export const Analyze = () => {
             {
                 Loading &&
                 <div className="spin">
-                    <Space direction="vertical" style={{ width: '100%' }}>
+                    <Space direction="vertical" style={{width: '100%'}}>
                         <Spin tip="Loading" size="large">
-                           <div className="content" />
+                            <div className="content"/>
                         </Spin>
                     </Space>
                 </div>
@@ -198,8 +208,18 @@ export const Analyze = () => {
                 </div>
                 <div className="middlearea">
                     <div className="middleareabox">
-                        <div className="middleareaboxtop">
-                            <div className="title">餐厅各方面评分变化趋势（2019年）</div>
+                        {
+                            Loading2 &&
+                            <div className="spin2">
+                                <Space direction="vertical" style={{width: '100%'}}>
+                                    <Spin tip="Loading" size="large">
+                                        <div className="content"/>
+                                    </Spin>
+                                </Space>
+                            </div>
+                        }
+                        <div className="middleareaboxtop" style={{position: "relative", top: Loading2 ? "-100%" : 0}}>
+                            <div className="title">餐厅各方面评分变化趋势（2017年）</div>
                             <Select
                                 style={{
                                     width: 202,
@@ -220,7 +240,8 @@ export const Analyze = () => {
                             />
                             <div className="more">查看更多</div>
                         </div>
-                        <div className="middleareaboxbottom">
+                        <div className="middleareaboxbottom"
+                             style={{position: "relative", top: Loading2 ? "-100%" : 0}}>
                             <ResponsiveContainer width="95%" height="90%">
                                 <AreaChart
                                     width={550}
@@ -244,13 +265,13 @@ export const Analyze = () => {
                                     <XAxis dataKey="name" stroke="rgba(129, 134, 165, 1)" fontSize={12}/>
                                     <YAxis stroke="rgba(129, 134, 165, 1)" fontSize={12}/>
                                     <Legend
-                                    wrapperStyle={{
-                                        width: "100%",
-                                        height: 5,
-                                        fontSize: "15px",
-                                        paddingTop: "2px",
-                                    }}
-                                        />
+                                        wrapperStyle={{
+                                            width: "100%",
+                                            height: 5,
+                                            fontSize: "15px",
+                                            paddingTop: "2px",
+                                        }}
+                                    />
                                     <Tooltip wrapperStyle={{
                                         width: 120,
                                         backdropFilter: "blur(10px)",
@@ -344,13 +365,13 @@ export const Analyze = () => {
                                     <YAxis/>
                                     <Tooltip/>
                                     <Legend
-                                    wrapperStyle={{
-                                        width: "100%",
-                                        height: 20,
-                                        fontSize: "15px",
-                                        paddingTop: "2px",
-                                    }}
-                                        />
+                                        wrapperStyle={{
+                                            width: "100%",
+                                            height: 20,
+                                            fontSize: "15px",
+                                            paddingTop: "2px",
+                                        }}
+                                    />
                                     <Bar dataKey="好评" barSize={15} stackId="a" fill="#778afe"/>
                                     <Bar dataKey="中评" barSize={15} stackId="a" fill="#9eaffe"/>
                                     <Bar dataKey="差评" barSize={15} stackId="a" fill="#c5d1ff"/>
@@ -383,18 +404,18 @@ export const Analyze = () => {
                                         ))}
                                     </Pie>
                                     <Legend
-                                    wrapperStyle={{
-                                        width: "100%",
-                                        height: 40,
-                                        fontSize: "12px",
-                                        paddingTop: "20px",
-                                    }}
-                                        />
+                                        wrapperStyle={{
+                                            width: "100%",
+                                            height: 40,
+                                            fontSize: "12px",
+                                            paddingTop: "20px",
+                                        }}
+                                    />
                                 </PieChart>
                             </ResponsiveContainer>
                         </div>
                     </div>
-                    <img src="/src/static/analyzepic.png" alt=""/>
+                    <img src="/static/analyzepic.png" alt=""/>
                 </div>
 
             </div>

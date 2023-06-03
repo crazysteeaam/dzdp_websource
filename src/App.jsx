@@ -7,6 +7,7 @@ import {BrowserRouter, HashRouter, Link, Route, Router, Routes} from "react-rout
 import {UserBook} from "./views/UserBook/UserBook.jsx";
 import {Marketing} from "./views/Marketing/Marketing.jsx";
 import {Compare} from "./views/Compare/Compare.jsx";
+import {Index} from "./views/Index/Index.jsx";
 
 function App() {
 
@@ -27,7 +28,8 @@ function App() {
                         </div>
                         <div className="mainroutearea">
                             <Routes>
-                                <Route exact path="" element={<Analyze/>}/>
+                                <Route exact path="" element={<Index/>}/>
+                                <Route exact path="/index" element={<Index/>}/>
                                 <Route exact path="/analyze" element={<Analyze/>}/>
                                 <Route exact path="/userbook" element={<UserBook/>}/>
                                 <Route exact path="/marketing" element={<Marketing/>}/>

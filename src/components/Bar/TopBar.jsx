@@ -12,7 +12,7 @@ export const TopBar = () => {
                     <div className="title">大众点评数据分析系统</div>
                 </div>
                 <div className="rightarea">
-                    <img src="/src/static/topbarright.png" alt=""/>
+                    <img src="/static/topbarright.png" alt=""/>
                 </div>
             </div>
 
