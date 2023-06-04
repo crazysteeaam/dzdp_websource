@@ -94,6 +94,7 @@ export const Marketing = () => {
     const [Merchantlist, setMerchantlist] = useState([])
     const [data, setData] = useState({})
     const [AdviceList, setAdviceList] = useState([{}, {}, {}, {}])
+    const [Currentmerchant, setCurrentmerchant] = useState('')
 
     useEffect(() => {
         marketApi.getstartdata().then((res) => {
@@ -102,6 +103,7 @@ export const Marketing = () => {
             setMerchantlist(res.message.merchants)
             setData(res.message)
             setAdviceList(res.message.advice)
+            setCurrentmerchant(res.message.merchantname)
             setLoading(false)
         })
             .catch((err) => {
@@ -118,6 +120,7 @@ export const Marketing = () => {
                 setMerchantlist(res.message.merchants)
                 setData(res.message)
                 setAdviceList(res.message.advice)
+                setCurrentmerchant(res.message.merchantname)
                 setLoading(false)
             }
         ).catch((err) => {
@@ -185,6 +188,7 @@ export const Marketing = () => {
             <div className="marketing">
                 <div className="topsearch">
                     <SearchBox options={Merchantlist} onChange={onChange}/>
+                    {Currentmerchant !== '' && <div className="currentmerchant">&nbsp;&nbsp;当前餐厅：{Currentmerchant}</div>}
                 </div>
                 <div className="toparea">
                     <TopAreaBoxView/>

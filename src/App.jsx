@@ -8,6 +8,10 @@ import {UserBook} from "./views/UserBook/UserBook.jsx";
 import {Marketing} from "./views/Marketing/Marketing.jsx";
 import {Compare} from "./views/Compare/Compare.jsx";
 import {Index} from "./views/Index/Index.jsx";
+import {Again} from "./views/Compare/Again/Again.jsx"
+import {Raredata} from "./views/Raredata/Raredata.jsx";
+import {Topdishes} from "./views/Analyze/Topdishes/Topdishes.jsx";
+import {Commentlevel} from "./views/Analyze/Commentlevel/Commentlevel.jsx";
 
 function App() {
 
@@ -31,9 +35,13 @@ function App() {
                                 <Route exact path="" element={<Index/>}/>
                                 <Route exact path="/index" element={<Index/>}/>
                                 <Route exact path="/analyze" element={<Analyze/>}/>
+                                <Route exact path="/analyze/commentlevel" element={<Commentlevel/>}/>
+                                <Route exact path="/analyze/topdishes" element={<Topdishes/>}/>
                                 <Route exact path="/userbook" element={<UserBook/>}/>
                                 <Route exact path="/marketing" element={<Marketing/>}/>
                                 <Route exact path="/compare" element={<Compare/>}/>
+                                <Route exact path="/compare/again" element={<Again/>}/>
+                                <Route exact path="/raredata" element={<Raredata/>}/>
                             </Routes>
                         </div>
                     </div>

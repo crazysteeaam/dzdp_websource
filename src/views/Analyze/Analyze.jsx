@@ -13,9 +13,9 @@ import {
     ResponsiveContainer,
     XAxis,
     YAxis,
-    Tooltip, PieChart, Pie, Sector, Cell
+    Tooltip, PieChart, Pie, Sector, Cell, LabelList
 } from "recharts";
-import {useMatch} from "react-router-dom";
+import {useMatch, useNavigate} from "react-router-dom";
 
 
 const TopAreaBox = (item) => {
@@ -93,6 +93,7 @@ const renderActiveShape = (props) => {
 export const Analyze = () => {
 
     const match = useMatch('/analyze');
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (match) {
@@ -107,6 +108,7 @@ export const Analyze = () => {
     const [Data1, setData1] = useState([])
     const [Loading, setLoading] = useState(true)
     const [Loading2, setLoading2] = useState(false)
+    const [Currentmerchant, setCurrentmerchant] = useState('')
 
     useEffect(() => {
         analyzeApi.getstartdata().then(res => {
@@ -139,6 +141,7 @@ export const Analyze = () => {
             ])
             setMerchantlist(res.message.merchants)
             setData1(res.message.data1)
+            setCurrentmerchant(res.message.merchantname)
             setLoading(false)
         })
             .catch((err) => {
@@ -166,6 +169,7 @@ export const Analyze = () => {
         setLoading2(true);
         analyzeApi.getdata1(value).then(res => {
                 setData1(res.message.data1)
+                setCurrentmerchant(res.message.merchantname)
                 setLoading2(false)
             }
         ).catch((err) => {
@@ -187,6 +191,14 @@ export const Analyze = () => {
     const data4 = Datalist.data4
 
     const COLORS = ['rgba(112, 138, 255, 1)', 'rgba(66, 164, 245, 1)', 'rgba(157, 115, 255, 1)', 'rgba(247, 193, 45, 1)', 'rgba(255, 153, 43, 1)', 'rgba(160, 165, 198, 1)', 'rgba(247, 101, 96, 1)'];
+
+    const gotocommentlevel = () => {
+        navigate('/analyze/commentlevel', {state: {Datalist: Datalist}})
+    }
+
+    const gototopdishes = () => {
+        navigate('/analyze/topdishes', {state: {Datalist: Datalist}})
+    }
 
 
     return (
@@ -238,14 +250,15 @@ export const Analyze = () => {
                                 }
                                 options={Merchantlist}
                             />
-                            <div className="more">查看更多</div>
+                            {/*<div className="more">查看更多</div>*/}
                         </div>
                         <div className="middleareaboxbottom"
                              style={{position: "relative", top: Loading2 ? "-100%" : 0}}>
-                            <ResponsiveContainer width="95%" height="90%">
+                            <div className="subtitle">餐厅：{Currentmerchant ? Currentmerchant : ''}</div>
+                            <ResponsiveContainer width="95%" height="81%">
                                 <AreaChart
                                     width={550}
-                                    height={250}
+                                    height={200}
                                     data={data}
                                     margin={{top: 10, right: 30, left: 0, bottom: 0}}>
                                     <defs>
@@ -301,7 +314,7 @@ export const Analyze = () => {
                     <div className="middleareabox">
                         <div className="middleareaboxtop">
                             <div className="title">最受消费者欢迎的粤菜排名</div>
-                            <div className="more">查看更多</div>
+                            <div className="more" onClick={gototopdishes}>查看更多</div>
                         </div>
                         <div className="middleareaboxbottom">
                             <ResponsiveContainer width="100%" height="100%">
@@ -312,7 +325,7 @@ export const Analyze = () => {
                                     data={data2}
                                     margin={{
                                         top: 5,
-                                        right: 10,
+                                        right: 20,
                                         left: 35,
                                         bottom: 5,
                                     }}
@@ -335,7 +348,9 @@ export const Analyze = () => {
                                         textAlign: "left",
                                     }}/>
                                     {/*<Legend />*/}
-                                    <Bar dataKey="value" barSize={10} fill="rgba(112, 138, 255, 1)"/>
+                                    <Bar dataKey="value" name="热度" barSize={10} fill="rgba(112, 138, 255, 1)">
+                                        <LabelList dataKey="value" position="right" fontSize={10}/>
+                                    </Bar>
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
@@ -345,7 +360,7 @@ export const Analyze = () => {
                     <div className="bottomareabox">
                         <div className="middleareaboxtop">
                             <div className="title">评论分级情况</div>
-                            <div className="more">查看更多</div>
+                            <div className="more" onClick={gotocommentlevel}>查看更多</div>
                         </div>
                         <div className="middleareaboxbottom">
                             <ResponsiveContainer width="100%" height="100%">
@@ -363,12 +378,25 @@ export const Analyze = () => {
                                     <CartesianGrid strokeDasharray="1 3"/>
                                     <XAxis dataKey="name" angle={0} fontSize={10}/>
                                     <YAxis/>
-                                    <Tooltip/>
+                                    <Tooltip wrapperStyle={{
+                                        width: 150,
+                                        backdropFilter: "blur(10px)",
+                                        filter: "drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25))",
+                                        background: "transparent",
+                                        border: "0px solid white",
+                                        borderRadius: "4px",
+                                        fontSize: "12px",
+                                        fontWeight: 400,
+                                        letterSpacing: "0.36px",
+                                        lineHeight: "16.46px",
+                                        color: "rgba(0, 0, 0, 1)",
+                                        textAlign: "left",
+                                    }}/>
                                     <Legend
                                         wrapperStyle={{
                                             width: "100%",
                                             height: 20,
-                                            fontSize: "15px",
+                                            fontSize: "12px",
                                             paddingTop: "2px",
                                         }}
                                     />
@@ -382,7 +410,7 @@ export const Analyze = () => {
                     <div className="bottomareabox">
                         <div className="middleareaboxtop">
                             <div className="title">餐厅人均价格分布情况</div>
-                            <div className="more">查看更多</div>
+                            {/*<div className="more">查看更多</div>*/}
                         </div>
                         <div className="middleareaboxbottom">
                             <ResponsiveContainer width="95%" height="100%" className="container">
@@ -407,9 +435,10 @@ export const Analyze = () => {
                                         wrapperStyle={{
                                             width: "100%",
                                             height: 40,
-                                            fontSize: "12px",
+                                            fontSize: "10px",
                                             paddingTop: "20px",
                                         }}
+                                        iconSize={10}
                                     />
                                 </PieChart>
                             </ResponsiveContainer>

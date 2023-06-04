@@ -2,6 +2,7 @@ export * as analyzeApi from './analyze.js';
 export * as userbookApi from './userbook.js';
 export * as marketApi from './marketing.js';
 export * as compareApi from './compare.js';
+export * as raredataApi from './raredata.js';
 
 const API_URL = 'http://localhost:8000'
 // const API_URL = 'https://donghua.website:8008'

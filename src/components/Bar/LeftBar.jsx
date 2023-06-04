@@ -81,8 +81,9 @@ export const LeftBar = () => {
             {
                 index: 4,
                 bariconaddress: "/static/setting.png",
-                bartitle: "设置",
-                gotoicon: true
+                bartitle: "原始数据",
+                gotoicon: true,
+                gotopage: "/raredata"
             }
         ])
     }, [])

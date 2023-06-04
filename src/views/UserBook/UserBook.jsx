@@ -4,12 +4,12 @@ import {useEffect, useState} from "react";
 import {Space, Spin} from "antd";
 import {
     Area,
-    AreaChart,
+    AreaChart, CartesianGrid,
     Cell,
     Legend,
     Pie,
     PieChart,
-    ResponsiveContainer,
+    ResponsiveContainer, Scatter, ScatterChart,
     Sector,
     Tooltip,
     XAxis,
@@ -713,7 +713,9 @@ export const UserBook = () => {
 
     const data3 = StartDataList.month_data;
 
-    const data4 = [{name: "50元以下", value: 15}, {name: "50-100元", value: 122}, {name: "100-150元", value: 32}];
+    // const data4 = [{name: "50元以下", value: 15}, {name: "50-100元", value: 122}, {name: "100-150元", value: 32}];
+
+    const data5 = StartDataList.matrix_data
 
 
     return (
@@ -733,7 +735,7 @@ export const UserBook = () => {
                     <div className="topareabox">
                         <div className="topareaboxtop">
                             <div className="title">用户等级分布</div>
-                            <div className="more">查看更多</div>
+                            {/*<div className="more">查看更多</div>*/}
                         </div>
                         <div className="topareaboxbottom">
                             <ResponsiveContainer width="95%" height="100%" className="container">
@@ -769,7 +771,7 @@ export const UserBook = () => {
                     <div className="topareabox">
                         <div className="topareaboxtop">
                             <div className="title">用户身份</div>
-                            <div className="more">查看更多</div>
+                            {/*<div className="more">查看更多</div>*/}
                         </div>
                         <div className="topareaboxbottom">
                             <ResponsiveContainer width="100%" height="100%">
@@ -803,7 +805,7 @@ export const UserBook = () => {
                     <div className="topareabox">
                         <div className="topareaboxtop">
                             <div className="title">用户评论频率</div>
-                            <div className="more">查看更多</div>
+                            {/*<div className="more">查看更多</div>*/}
                         </div>
                         <div className="topareaboxbottom">
                             <ResponsiveContainer width="95%" height="90%">
@@ -854,14 +856,21 @@ export const UserBook = () => {
                     <div className="bottomareabox1 bottomareaboxleft">
                         <div className="bottomareaboxtop">
                             <div className="title">用户画像</div>
-                            <div className="more">查看更多</div>
+                            {/*<div className="more">查看更多</div>*/}
                         </div>
                         <div className="bottomareaboxbottom">
-                            <UserBookBox book="123123123123"/>
-                            <UserBookBox book="123123123123123"/>
-                            <UserBookBox book="123123123"/>
-                            <UserBookBox book="123123"/>
-                            <UserBookBox book="123"/>
+                            <UserBookBox book={["品味鉴赏家", "● VIP用户占比低", "● 更注重产品口味", "● 评分较严苛"]}
+                                         avatarurl="/static/userbookava/1.png"/>
+                            <UserBookBox book={["服务注重者", "● VIP用户占比低", "● 更注重商家服务", "● 评分较严苛"]}
+                                         avatarurl="/static/userbookava/2.png"/>
+                            <UserBookBox book={["普通食客", "● VIP用户占比较高", "● 更注重产品价格", "● 评分较宽松"]}
+                                         avatarurl="/static/userbookava/3.png"/>
+                            <UserBookBox
+                                book={["异常行为者", "● 新用户为主", "● 评分过高或过低，不存在参考性", "● 存在刷单或恶意竞争评价行为"]}
+                                avatarurl="/static/userbookava/4.png"/>
+                            <UserBookBox
+                                book={["综合考察员", "● 平台核心用户", "● VIP用户占比较高", "● 注重产品口味和商家服务", "● 评分较客观"]}
+                                avatarurl="/static/userbookava/6.png"/>
                         </div>
                     </div>
                     <div className="bottomareabox1 bottomareaboxright">
@@ -878,7 +887,29 @@ export const UserBook = () => {
                             <div className="bottomareaboxrightbottomleft">
                                 <div className="bottomareaboxtop">
                                     <div className="title">聚类结果</div>
-                                    <div className="more">查看更多</div>
+                                    {/*<div className="more">查看更多</div>*/}
+                                </div>
+                                <div className="bottomareaboxbottom">
+                                    <ResponsiveContainer width="100%" height={250}>
+                                        <ScatterChart
+                                            margin={{
+                                                top: 20,
+                                                right: 20,
+                                                bottom: 20,
+                                                // left: 20,
+                                            }}
+                                        >
+                                            <CartesianGrid/>
+                                            <XAxis type="number" dataKey="x" name="x" fontSize={12}/>
+                                            <YAxis type="number" dataKey="y" name="y" fontSize={12}/>
+                                            <Tooltip cursor={{strokeDasharray: '3 3'}}/>
+                                            <Scatter name="A school" data={data5} fill="#8884d8">
+                                                {data5?.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={COLORS[data5[index].c]}/>
+                                                ))}
+                                            </Scatter>
+                                        </ScatterChart>
+                                    </ResponsiveContainer>
                                 </div>
                             </div>
                             <div className="bottomareaboxrightbottomright">
