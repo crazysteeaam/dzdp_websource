@@ -80,7 +80,12 @@ export const Again = () => {
             <div className="back" onClick={gotocompare}> &lt; 返回上一页</div>
             <div className="again">回头客分析</div>
             <div className="table">
-                <Table columns={columns} dataSource={data} onChange={onChange}/>
+                <Table
+                    columns={columns}
+                    dataSource={data}
+                    onChange={onChange}
+                    scroll={{ y: 520 }}
+                />
             </div>
         </>
     )

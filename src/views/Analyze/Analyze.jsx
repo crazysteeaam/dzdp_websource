@@ -193,7 +193,7 @@ export const Analyze = () => {
     const COLORS = ['rgba(112, 138, 255, 1)', 'rgba(66, 164, 245, 1)', 'rgba(157, 115, 255, 1)', 'rgba(247, 193, 45, 1)', 'rgba(255, 153, 43, 1)', 'rgba(160, 165, 198, 1)', 'rgba(247, 101, 96, 1)'];
 
     const gotocommentlevel = () => {
-        navigate('/analyze/commentlevel', {state: {Datalist: Datalist}})
+        navigate('/analyze/commentlevel', {state: {Datalist: Datalist,Merchantlist: Merchantlist}})
     }
 
     const gototopdishes = () => {

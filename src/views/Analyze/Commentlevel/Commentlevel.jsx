@@ -39,11 +39,22 @@ export const Commentlevel = () => {
         }
     })
 
+    const filters = state?.Merchantlist?.map((item) => {
+        return {
+            text: item.label,
+            value: item.value,
+        }
+    })
+
     const columns = [
         {
             title: '餐厅名称',
             dataIndex: 'name',
             sorter: (a, b) => a.name.localeCompare(b.name),
+            filters: filters,
+            filterMode: 'tree',
+            filterSearch: true,
+            onFilter: (value, record) => record.name.startsWith(value),
             width: '40%',
         },
         {

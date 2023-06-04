@@ -188,6 +188,10 @@ export const Compare = () => {
         navigate('/compare/again', {state: {Data: Data?.again_data}})
     }
 
+    const gotomarketshare = () => {
+        navigate('/compare/marketshare')
+    }
+
 
     const data = Data?.again_data_8;
     const data4 = Data?.heat_data;
@@ -248,7 +252,7 @@ export const Compare = () => {
                     <div className="topboxbig">
                         <div className="topboxbigtop">
                             <div className="title">市场份额分析</div>
-                            <div className="more">查看更多</div>
+                            <div className="more" onClick={gotomarketshare}>查看更多</div>
                         </div>
                         <div className="topboxbigbottom">
                             <ResponsiveContainer width="100%" height="100%" className="container">

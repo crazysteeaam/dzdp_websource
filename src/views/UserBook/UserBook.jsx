@@ -1,5 +1,5 @@
 import './UserBook.scss'
-import {useMatch} from "react-router-dom";
+import {useMatch, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Space, Spin} from "antd";
 import {
@@ -90,6 +90,7 @@ const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, perc
 
 export const UserBook = () => {
 
+    const navigate = useNavigate();
     const match = useMatch('/userbook');
 
     useEffect(() => {
@@ -717,6 +718,10 @@ export const UserBook = () => {
 
     const data5 = StartDataList.matrix_data
 
+    const gotoapriori = () => {
+        navigate('/userbook/apriori', {state: {option: option}})
+    }
+
 
     return (
         <>
@@ -845,8 +850,8 @@ export const UserBook = () => {
                                         textAlign: "left",
                                     }}/>
                                     {/*<CartesianGrid strokeDasharray="3 3" />*/}
-                                    <Area type="monotone" dataKey="value" stroke="rgba(72, 118, 255, 1)"
-                                          fillOpacity={1} fill="url(#colorUv)"/>
+                                    <Area type="monotone" dataKey="value" name="评论数量" stroke="rgba(72, 118, 255, 1)"
+                                          fillOpacity={1} fill="url(#colorUv)" fontSize={10}/>
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
@@ -877,7 +882,7 @@ export const UserBook = () => {
                         <div className="bottomareaboxrighttop">
                             <div className="bottomareaboxtop">
                                 <div className="title">关联规则查看</div>
-                                <div className="more">查看更多</div>
+                                <div className="more" onClick={gotoapriori}>查看更多</div>
                             </div>
                             <div className="bottomareaboxbottom">
                                 <ReactECharts option={option}/>
@@ -902,7 +907,20 @@ export const UserBook = () => {
                                             <CartesianGrid/>
                                             <XAxis type="number" dataKey="x" name="x" fontSize={12}/>
                                             <YAxis type="number" dataKey="y" name="y" fontSize={12}/>
-                                            <Tooltip cursor={{strokeDasharray: '3 3'}}/>
+                                            <Tooltip wrapperStyle={{
+                                                width: 80,
+                                                backdropFilter: "blur(10px)",
+                                                filter: "drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25))",
+                                                background: "transparent",
+                                                border: "0px solid white",
+                                                borderRadius: "4px",
+                                                fontSize: "12px",
+                                                fontWeight: 400,
+                                                letterSpacing: "0.36px",
+                                                lineHeight: "16.46px",
+                                                color: "rgba(0, 0, 0, 1)",
+                                                textAlign: "left",
+                                            }}/>
                                             <Scatter name="A school" data={data5} fill="#8884d8">
                                                 {data5?.map((entry, index) => (
                                                     <Cell key={`cell-${index}`} fill={COLORS[data5[index].c]}/>

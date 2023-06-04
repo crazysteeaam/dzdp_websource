@@ -17,3 +17,7 @@ export const getcomparedata2 = async (merchant1, merchant2) => {
 export const getcomparedata1 = async (merchant1) => {
     return await get(`${baseUrl}1/${merchant1}`)
 }
+
+export const getmarketshare = async () => {
+    return await get(`marketshare`)
+}

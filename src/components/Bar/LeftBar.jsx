@@ -33,7 +33,37 @@ export const LeftBar = () => {
     const navigate = useNavigate();
 
     const [BarList, setBarList] = useState([]);
-    const [Selectedindex, setSelectedIndex] = useState(0);
+    const [Selectedindex, setSelectedIndex] = useState(-1);
+
+    useEffect(() => {
+        // 根据当前的路由地址，设置选中的index
+        let path = window.location.pathname;
+        let index = -1;
+        switch (path) {
+            case "/index":
+                index = -1;
+                break;
+            case "/analyze":
+                index = 0;
+                break;
+            case "/userbook":
+                index = 1;
+                break;
+            case "/marketing":
+                index = 2;
+                break;
+            case "/compare":
+                index = 3;
+                break;
+            case "/raredata":
+                index = 4;
+                break;
+            default:
+                index = -1;
+                break;
+        }
+        setSelectedIndex(index);
+    }, [])
 
     let handleClick = function (item) {
         console.log(item)
